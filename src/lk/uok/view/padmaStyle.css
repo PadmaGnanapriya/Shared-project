@@ -1,0 +1,11 @@
+.root{
+    -fx-background-color: midnightblue;
+}
+.button{
+    -fx-background-color: darkcyan;
+    -fx-padding: 10px;
+}
+
+.button:hover{
+    -fx-background-color:cyan;
+}
