@@ -43,7 +43,7 @@ public class CustomerFormController extends Component {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
         colOperation.setCellValueFactory(new PropertyValueFactory<>("btn"));
-//        loadAllCustomers();
+        loadAllCustomers();
     }
 
     private void loadAllCustomers() throws SQLException, ClassNotFoundException {
@@ -81,9 +81,7 @@ public class CustomerFormController extends Component {
                         e1.printStackTrace();
                     }
                 } else {
-
                 }
-
             });
         }
         tbl.setItems(customerTMS);
@@ -104,16 +102,5 @@ public class CustomerFormController extends Component {
         CustomerDTO dto=new CustomerDTO(txtId.getText(),txtName.getText(),txtAddress.getText(),Double.parseDouble(txtSalary.getText()));
         DatabaseAccessCode.addCustomer(dto);
     }
-//
-//    public void successfullyRan(){
-////        txtId.setText("");
-////        txtName.setText("");
-////        txtAddress.setText("");
-////        txtSalary.setText("");
-////        txtSearch.setText("");
-//
-//    }
-//
-//    public void errorOnRun() {
-//    }
+
 }
