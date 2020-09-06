@@ -8,9 +8,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import lk.uok.dao.DatabaseAccessCode;
 import lk.uok.dao.DatabaseAccessItem;
 import lk.uok.dto.ItemDTO;
+import lk.uok.view.tm.CustomerTM;
 import lk.uok.view.tm.ItemTM;
 
 import java.sql.SQLException;
@@ -84,5 +86,13 @@ public class ItemFormController {
     public void newOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         ItemDTO itemDTO=new ItemDTO(txtCode.getText(),txtDescription.getText(), Double.parseDouble(txtUnitPrice.getText()), Integer.parseInt(txtQtyONHand.getText()));
         DatabaseAccessItem.addItem(itemDTO);
+    }
+
+    public void onMouseClick(MouseEvent mouseEvent) {
+        ObservableList<ItemTM> selectedRows = tbl.getSelectionModel().getSelectedItems();
+        txtCode.setText(selectedRows.get(0).getCode());
+        txtDescription.setText(selectedRows.get(0).getDescription());
+        txtUnitPrice.setText(String.valueOf(selectedRows.get(0).getUnitPrice()));
+        txtQtyONHand.setText(String.valueOf(selectedRows.get(0).getQtyOnHand()));
     }
 }
