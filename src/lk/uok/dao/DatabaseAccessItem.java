@@ -76,6 +76,8 @@ public class DatabaseAccessItem {
         pstm.executeUpdate();
     }
 
+
+
     public static boolean deleteItem(String code) throws SQLException, ClassNotFoundException {
         Connection con=DBConnection.getInstance().getConnection();
         PreparedStatement pstm=con.prepareStatement("DELETE FROM item WHERE code=?");

@@ -128,9 +128,13 @@ public class PlaceOrderFormController {
     }
 
     public void placeOderOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-//        for(PlaceOrderTM tm:PlaceOrderTM)
-//        ItemDTO itemDTO =new ItemDTO()
-//        DatabaseAccessItem.updateItem(itemDTO);
+        for(PlaceOrderTM tm:orderTMS){
+            int count=DatabaseAccessItem.searchItem(tm.getCode()).getQtyOnHand();
+            ItemDTO itemDTO =new ItemDTO(tm.getCode(),tm.getDescription(), tm.getUnitPrice(),count-tm.getQty());
+            DatabaseAccessItem.updateItem(itemDTO);
+            System.out.println("UUUUU");
+        }
+
     }
 
     public void customerIdOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
