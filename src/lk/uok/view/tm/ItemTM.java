@@ -44,7 +44,6 @@ public class ItemTM {
                     "Are You Sure whether You Want to Delete This Customer?",
                     ok,no);
             Optional<ButtonType> result = alert.showAndWait();
-            System.out.println(this.getCode());
             if (result.orElse(no)==ok){
                 try {
                     boolean isDeleted = DatabaseAccessItem.deleteItem(this.getCode());

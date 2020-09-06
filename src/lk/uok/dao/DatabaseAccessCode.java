@@ -49,7 +49,7 @@ public class DatabaseAccessCode {
 
     public static boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException {
         Connection con=DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("DELETE FROM WHERE id=?");
+        PreparedStatement pstm=con.prepareStatement("DELETE FROM customer WHERE id=?");
         pstm.setObject(1,id);
         return pstm.executeUpdate()>0;
 
@@ -81,5 +81,17 @@ public class DatabaseAccessCode {
             customerDTOList2.add(customerDTO);
         }
         return customerDTOList2;
+    }
+
+    public static void updateCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException {
+        Connection con= DBConnection.getInstance().getConnection();
+        PreparedStatement pstm=con.prepareStatement("UPDATE customer SET name=?,address=?, salary=? WHERE id=?");
+        pstm.setObject(1,dto.getName());
+        pstm.setObject(2,dto.getAddress());
+        pstm.setObject(3,dto.getSalary());
+        pstm.setObject(4, dto.getId());
+        CustomerFormController customerFormController=new CustomerFormController();
+
+        if(pstm.executeUpdate()>0) System.out.println("Done properly");
     }
 }

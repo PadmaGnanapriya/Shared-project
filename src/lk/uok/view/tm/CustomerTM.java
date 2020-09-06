@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import lk.uok.dao.DatabaseAccessCode;
+import lk.uok.dao.DatabaseAccessItem;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -23,39 +24,6 @@ public class CustomerTM {
     private Button btn=new Button("Delete");
 
 
-
-
-
-//    btn.setOnAction(e -> {
-//        ButtonType ok = new ButtonType("OK",
-//                ButtonBar.ButtonData.OK_DONE);
-//        ButtonType no = new ButtonType("NO",
-//                ButtonBar.ButtonData.CANCEL_CLOSE);
-//        Alert alert = new Alert(
-//                Alert.AlertType.CONFIRMATION,
-//                "Are You Sure whether You Want to Delete This Customer?",
-//                ok, no);
-//        Optional<ButtonType> result = alert.showAndWait();
-//        if (result.orElse(no) == ok) {
-//            try {
-//                boolean isDeleted = DatabaseAccessCode.deleteCustomer(tm.getId());
-//                if (isDeleted) {
-//                    new Alert(Alert.AlertType.CONFIRMATION, "Deleted !",
-//                            ButtonType.OK).show();
-//                } else {
-//                    new Alert(Alert.AlertType.WARNING, "Try Again !",
-//                            ButtonType.OK).show();
-//                }
-//            } catch (ClassNotFoundException e1) {
-//                e1.printStackTrace();
-//            } catch (SQLException e1) {
-//                e1.printStackTrace();
-//            }
-//        } else {
-//        }
-//    });
-
-
     public CustomerTM() {
     }
 
@@ -64,6 +32,36 @@ public class CustomerTM {
         this.name = name;
         this.address = address;
         this.salary = salary;
+        btn.setOnAction(e->{
+            ButtonType ok= new ButtonType("OK",
+                    ButtonBar.ButtonData.OK_DONE);
+            ButtonType no= new ButtonType("NO",
+                    ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert= new Alert(
+                    Alert.AlertType.CONFIRMATION,
+                    "Are You Sure whether You Want to Delete This Customer?",
+                    ok,no);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.orElse(no)==ok){
+                try {
+                    boolean isDeleted = DatabaseAccessCode.deleteCustomer(this.getId());
+
+                    if (isDeleted){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Deleted !",
+                                ButtonType.OK).show();
+                    }else{
+                        new Alert(Alert.AlertType.WARNING,"Try Again !",
+                                ButtonType.OK).show();
+                    }
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }else{
+            }
+
+        });
     }
 
     public String getId() {

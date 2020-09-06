@@ -82,6 +82,8 @@ public class CustomerFormController extends Component {
         DatabaseAccessCode.addCustomer(dto);
     }
 
-    public void updateOnAction(ActionEvent actionEvent) {
+    public void updateOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        CustomerDTO dto=new CustomerDTO(txtId.getText(),txtName.getText(),txtAddress.getText(),Double.parseDouble(txtSalary.getText()));
+        DatabaseAccessCode.updateCustomer(dto);
     }
 }
