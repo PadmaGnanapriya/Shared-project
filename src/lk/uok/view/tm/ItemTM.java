@@ -1,6 +1,6 @@
 package lk.uok.view.tm;
 
-import com.jfoenix.controls.JFXButton;
+import javafx.scene.control.Button;
 
 /**
  * Created by Padma Gnanapiya (SE/2017/014)
@@ -12,14 +12,14 @@ public class ItemTM {
     private String description;
     private double unitPrice;
     private int qtyOnHand;
-    private JFXButton btn;
+    private Button btn=new Button("Delete");
 
     public ItemTM(String code, String description, double unitPrice, int qtyOnHand) {
-        this.code = code;
-        this.description = description;
-        this.unitPrice = unitPrice;
-        this.qtyOnHand = qtyOnHand;
-//        this.btn = btn;
+        this.setCode(code);
+        this.setDescription(description);
+        this.setUnitPrice(unitPrice);
+        this.setQtyOnHand(qtyOnHand);
+        btn.setStyle("-fx-background-color: #d35400");
     }
 
     public ItemTM() {
@@ -57,11 +57,11 @@ public class ItemTM {
         this.qtyOnHand = qtyOnHand;
     }
 
-    public JFXButton getBtn() {
+    public Button getBtn() {
         return btn;
     }
 
-    public void setBtn(JFXButton btn) {
+    public void setBtn(Button btn) {
         this.btn = btn;
     }
 }

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.uok.dao.DatabaseAccessCode;
@@ -43,7 +44,7 @@ public class CustomerFormController extends Component {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
         colOperation.setCellValueFactory(new PropertyValueFactory<>("btn"));
-//        loadAllCustomers();
+        loadAllCustomers();
     }
 
 
@@ -52,39 +53,12 @@ public class CustomerFormController extends Component {
         ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCode.getAllCustomers();
         ObservableList<CustomerTM> customerTMS = FXCollections.observableArrayList();
         for (CustomerDTO dto : customerDTOS) {
-            JFXButton btn = new JFXButton("Delete");
+//            Button btn = null;
 
-            CustomerTM tm = new CustomerTM(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary(), btn);
+            CustomerTM tm = new CustomerTM(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary());
             customerTMS.add(tm);
 
-            btn.setOnAction(e -> {
-                ButtonType ok = new ButtonType("OK",
-                        ButtonBar.ButtonData.OK_DONE);
-                ButtonType no = new ButtonType("NO",
-                        ButtonBar.ButtonData.CANCEL_CLOSE);
-                Alert alert = new Alert(
-                        Alert.AlertType.CONFIRMATION,
-                        "Are You Sure whether You Want to Delete This Customer?",
-                        ok, no);
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.orElse(no) == ok) {
-                    try {
-                        boolean isDeleted = DatabaseAccessCode.deleteCustomer(tm.getId());
-                        if (isDeleted) {
-                            new Alert(Alert.AlertType.CONFIRMATION, "Deleted !",
-                                    ButtonType.OK).show();
-                        } else {
-                            new Alert(Alert.AlertType.WARNING, "Try Again !",
-                                    ButtonType.OK).show();
-                        }
-                    } catch (ClassNotFoundException e1) {
-                        e1.printStackTrace();
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                } else {
-                }
-            });
+
         }
         tbl.setItems(customerTMS);
     }
@@ -105,4 +79,6 @@ public class CustomerFormController extends Component {
         DatabaseAccessCode.addCustomer(dto);
     }
 
+    public void updateOnAction(ActionEvent actionEvent) {
+    }
 }

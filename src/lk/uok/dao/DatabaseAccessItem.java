@@ -22,6 +22,7 @@ public class DatabaseAccessItem {
         pstm.setObject(2,dto.getDescription());
         pstm.setObject(3,dto.getUnitPrice());
         pstm.setObject(4,dto.getQtyOnHand());
+        pstm.executeUpdate();
     }
 
     public static ArrayList<ItemDTO> getAllItem() throws SQLException, ClassNotFoundException {
@@ -48,6 +49,21 @@ public class DatabaseAccessItem {
         }
         else
             return null;
+    }
+
+    public static ArrayList<ItemDTO> searchbar(String code) throws SQLException, ClassNotFoundException {
+        ArrayList<ItemDTO> itemDTOList2=new ArrayList<>();
+        Connection con= DBConnection.getInstance().getConnection();
+        PreparedStatement pstm=con.prepareStatement("SELECT * FROM item WHERE code LIKE ? OR unitPrice LIKE ? OR description LIKE ? ");
+        pstm.setObject(1,"%"+code+"%");
+        pstm.setObject(2,"%"+code+"%");
+        pstm.setObject(3,"%"+code+"%");
+        ResultSet resultSet=pstm.executeQuery();
+        while(resultSet.next()){
+            ItemDTO itemDTO=new ItemDTO(resultSet.getString(1),resultSet.getString(2),resultSet.getDouble(3), resultSet.getInt(4));
+            itemDTOList2.add(itemDTO);
+        }
+        return itemDTOList2;
     }
 
     public static void updateItem(ItemDTO dto) throws SQLException, ClassNotFoundException {

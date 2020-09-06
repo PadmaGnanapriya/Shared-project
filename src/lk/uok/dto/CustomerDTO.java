@@ -16,6 +16,7 @@ public class CustomerDTO {
         this.name = name;
         this.address = address;
         this.salary = salary;
+
     }
 
     public CustomerDTO() {

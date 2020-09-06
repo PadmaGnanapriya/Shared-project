@@ -34,6 +34,7 @@ public class ItemFormController {
     public TextField txtUnitPrice;
     public TextField txtQtyONHand;
     public TableView tbl;
+    public TextField searchBar;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -49,7 +50,6 @@ public class ItemFormController {
         ArrayList<ItemDTO> itemDTOS= DatabaseAccessItem.getAllItem();
         ObservableList<ItemTM> observableList= FXCollections.observableArrayList();
         for(ItemDTO dto:itemDTOS){
-//            JFXButton btn=new JFXButton("Delete");
             ItemTM itemTM=new ItemTM(dto.getCode(), dto.getDescription(),dto.getUnitPrice(),dto.getQtyOnHand());
             observableList.add(itemTM);
         }
@@ -64,7 +64,16 @@ public class ItemFormController {
         txtUnitPrice.setText(String.valueOf(itemDTO.getUnitPrice()));
     }
 
-    public void searchOnAction(ActionEvent actionEvent) {
+    public void searchOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        ArrayList<ItemDTO> itemDTOS= DatabaseAccessItem.searchbar(searchBar.getText());
+        tbl.getItems().removeAll();
+        ObservableList<ItemTM> observableList= FXCollections.observableArrayList();
+        for(ItemDTO dto:itemDTOS){
+            ItemTM itemTM=new ItemTM(dto.getCode(), dto.getDescription(),dto.getUnitPrice(),dto.getQtyOnHand());
+            observableList.add(itemTM);
+        }
+        tbl.setItems(observableList);
+
     }
 
     public void updateOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
