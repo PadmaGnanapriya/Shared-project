@@ -29,12 +29,12 @@
                         <TextField fx:id="txtDescription" prefHeight="25.0" prefWidth="163.0" promptText="decription" />
                         <TextField fx:id="txtUnitPrice" prefHeight="25.0" prefWidth="111.0" promptText="unit price" />
                         <TextField fx:id="txtQtyONHand" prefHeight="25.0" prefWidth="103.0" promptText="qty on hand" />
-                        <TextField fx:id="txtQty" layoutX="445.0" layoutY="10.0" prefHeight="25.0" prefWidth="89.0" promptText="qty" />
+                        <TextField fx:id="txtQty" layoutX="445.0" layoutY="10.0" onAction="#qtyOnAction" prefHeight="25.0" prefWidth="89.0" promptText="qty" />
                      </children>
                   </HBox>
                   <HBox layoutX="392.0" layoutY="95.0" prefHeight="25.0" prefWidth="199.0" style="-fx-spacing: 10px;">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addOnAction" prefHeight="25.0" prefWidth="100.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Add" textFill="WHITE" />
+                        <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addOnAction" prefHeight="25.0" prefWidth="100.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Add" textFill="WHITE" />
                         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancleOnAction" prefHeight="25.0" prefWidth="88.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Cancle" textFill="WHITE" />
                      </children>
                   </HBox>
