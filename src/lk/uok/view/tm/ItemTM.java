@@ -14,12 +14,12 @@ public class ItemTM {
     private int qtyOnHand;
     private JFXButton btn;
 
-    public ItemTM(String code, String description, double unitPrice, int qtyOnHand, JFXButton btn) {
+    public ItemTM(String code, String description, double unitPrice, int qtyOnHand) {
         this.code = code;
         this.description = description;
         this.unitPrice = unitPrice;
         this.qtyOnHand = qtyOnHand;
-        this.btn = btn;
+//        this.btn = btn;
     }
 
     public ItemTM() {

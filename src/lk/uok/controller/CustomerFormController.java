@@ -43,8 +43,10 @@ public class CustomerFormController extends Component {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
         colOperation.setCellValueFactory(new PropertyValueFactory<>("btn"));
-        loadAllCustomers();
+//        loadAllCustomers();
     }
+
+
 
     private void loadAllCustomers() throws SQLException, ClassNotFoundException {
         ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCode.getAllCustomers();
