@@ -45,4 +45,26 @@ public class DatabaseAccessCode {
         return customerList;
 
     }
+
+    public static boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException {
+        Connection con=DBConnection.getInstance().getConnection();
+        PreparedStatement pstm=con.prepareStatement("DELETE FROM WHERE id=?");
+        pstm.setObject(1,id);
+        return pstm.executeUpdate()>0;
+
+    }
+
+    public static CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
+        Connection con=DBConnection.getInstance().getConnection();
+        PreparedStatement pstm=con.prepareStatement("SELECT * FROM customer WHERE id=?");
+        pstm.setObject(1,id);
+        ResultSet resultSet=pstm.executeQuery();
+        if(resultSet.next()){
+            CustomerDTO customerDTO=new CustomerDTO(resultSet.getString(1), resultSet.getString(2),resultSet.getString(3),resultSet.getDouble(4));
+            return customerDTO;
+        }else
+            return null;
+
+
+    }
 }

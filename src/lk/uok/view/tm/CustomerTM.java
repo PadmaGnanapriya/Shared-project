@@ -23,7 +23,7 @@ public class CustomerTM {
         this.address = address;
         this.salary = salary;
         this.btn = btn;
-        btn.setStyle("-fx-background-color: #d35400");
+//        btn.setStyle("-fx-background-color: #d35400");
     }
 
     public String getId() {
