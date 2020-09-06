@@ -2,12 +2,16 @@ package lk.uok.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Padma Gnanapiya (SE/2017/014)
@@ -16,6 +20,40 @@ import java.util.Date;
 
 public class DashBoardForm {
     public AnchorPane anchorPlaneArea;
+    public Label txtOrderDate;
+    public Label txtClock;
+    public Button navBtn;
+
+    public void initialize() throws InterruptedException {
+        genarateOrderDate();
+        genarateTime();
+//
+//        final String IDLE_BUTTON_STYLE = "-fx-background-color:  darkcyan; -fx-padding: 10px";
+//        final String HOVERED_BUTTON_STYLE = "-fx-background-color:  cyan; -fx-padding: 10px";
+//
+//
+//
+//        navBtn.setOnMouseEntered(e -> navBtn.setStyle(HOVERED_BUTTON_STYLE));
+//        navBtn.setOnMouseExited(e -> navBtn.setStyle(IDLE_BUTTON_STYLE));
+    }
+
+
+    private void genarateTime() throws InterruptedException {
+        Calendar now = Calendar.getInstance();
+        int h = now.get(Calendar.HOUR_OF_DAY);
+        int m = now.get(Calendar.MINUTE);
+        txtClock.setText(" " + h + " : " + m );
+
+
+//        while(true){
+//
+//            m++;
+//            if(m==60){h++;m=0;}
+//            Thread.sleep(1000);
+//            txtClock.setText(" " + h + " : " + m );
+//        }
+
+    }
 
     private void loadUi(String location) throws IOException {
         anchorPlaneArea.getChildren().clear();
@@ -26,7 +64,7 @@ public class DashBoardForm {
     private void genarateOrderDate() {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        txtOrderDate.setText(dateFormat.format(date));
+        txtOrderDate.setText(dateFormat.format(date));
     }
 
 
