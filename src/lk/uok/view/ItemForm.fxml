@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="322.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.uok.controller.ItemFormController">
+<AnchorPane prefHeight="322.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.uok.controller.ItemFormController">
    <children>
       <AnchorPane prefHeight="322.0" prefWidth="600.0" style="-fx-background-color: #c7ecee;">
          <children>
@@ -23,30 +22,30 @@
             <Separator layoutX="14.0" layoutY="51.0" prefHeight="2.0" prefWidth="569.0" />
             <HBox layoutX="11.0" layoutY="66.0" prefHeight="27.0" prefWidth="580.0" style="-fx-spacing: 10px;">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="95.0" promptText="code" />
-                  <TextField prefHeight="25.0" prefWidth="162.0" promptText="decription" />
-                  <TextField prefHeight="25.0" prefWidth="147.0" promptText="unit price" />
-                  <TextField prefHeight="25.0" prefWidth="142.0" promptText="qty on hand" />
+                  <TextField fx:id="txtCode" onAction="#codeOnAction" prefHeight="25.0" prefWidth="95.0" promptText="code" />
+                  <TextField fx:id="txtDescription" prefHeight="25.0" prefWidth="163.0" promptText="decription" />
+                  <TextField fx:id="txtUnitPrice" prefHeight="25.0" prefWidth="147.0" promptText="unit price" />
+                  <TextField fx:id="txtQtyONHand" prefHeight="25.0" prefWidth="142.0" promptText="qty on hand" />
                </children>
             </HBox>
             <HBox layoutX="11.0" layoutY="97.0" prefHeight="25.0" prefWidth="580.0" style="-fx-spacing: 10px;">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="446.0" promptText="Search . . ." />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Search" textFill="WHITE" />
+                  <TextField onAction="#searchOnAction" prefHeight="25.0" prefWidth="446.0" promptText="Search . . ." />
+                  <Button mnemonicParsing="false" onAction="#updateOnAction" prefHeight="25.0" prefWidth="122.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Update" textFill="WHITE" />
                </children>
             </HBox>
-            <Button layoutX="495.0" layoutY="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" style="-fx-line-spacing: 10px; -fx-background-color: #00b894;" text="+ New" textFill="WHITE">
+            <Button layoutX="495.0" layoutY="20.0" mnemonicParsing="false" onAction="#newOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-line-spacing: 10px; -fx-background-color: #00b894;" text="+ New" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <TableView layoutX="10.0" layoutY="129.0" prefHeight="185.0" prefWidth="580.0">
+            <TableView fx:id="tbl" layoutX="10.0" layoutY="129.0" prefHeight="185.0" prefWidth="580.0">
                <columns>
-                  <TableColumn prefWidth="94.0" text="code" />
-                  <TableColumn prefWidth="160.0" text="description" />
-                  <TableColumn prefWidth="127.0" text="unit price" />
-                  <TableColumn prefWidth="109.0" text="qty on hand" />
-                  <TableColumn prefWidth="88.0" text="operation" />
+                  <TableColumn fx:id="colCode" prefWidth="94.0" text="code" />
+                  <TableColumn fx:id="colDescription" prefWidth="160.0" text="description" />
+                  <TableColumn fx:id="colUnitPrice" prefWidth="127.0" text="unit price" />
+                  <TableColumn fx:id="colQtyOnHand" prefWidth="109.0" text="qty on hand" />
+                  <TableColumn fx:id="colOperation" prefWidth="88.0" text="operation" />
                </columns>
             </TableView>
          </children>
