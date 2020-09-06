@@ -46,7 +46,7 @@ public class ItemFormController {
         loadALlItems();
       }
 
-    private void loadALlItems() throws SQLException, ClassNotFoundException {
+    public void loadALlItems() throws SQLException, ClassNotFoundException {
         ArrayList<ItemDTO> itemDTOS= DatabaseAccessItem.getAllItem();
         ObservableList<ItemTM> observableList= FXCollections.observableArrayList();
         for(ItemDTO dto:itemDTOS){

@@ -3,6 +3,7 @@ package lk.uok.dao;
 import lk.uok.controller.CustomerFormController;
 import lk.uok.db.DBConnection;
 import lk.uok.dto.CustomerDTO;
+import lk.uok.dto.ItemDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -64,6 +65,21 @@ public class DatabaseAccessCode {
             return customerDTO;
         }else
             return null;
+    }
 
+    public static ArrayList<CustomerDTO> searchbar(String code) throws SQLException, ClassNotFoundException {
+        ArrayList<CustomerDTO> customerDTOList2=new ArrayList<>();
+        Connection con= DBConnection.getInstance().getConnection();
+        PreparedStatement pstm=con.prepareStatement("SELECT * FROM customer WHERE id LIKE ? OR name LIKE ? OR address LIKE ? OR salary LIKE ? ");
+        pstm.setObject(1,"%"+code+"%");
+        pstm.setObject(2,"%"+code+"%");
+        pstm.setObject(3,"%"+code+"%");
+        pstm.setObject(4,"%"+code+"%");
+        ResultSet resultSet=pstm.executeQuery();
+        while(resultSet.next()){
+            CustomerDTO customerDTO=new CustomerDTO(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3), resultSet.getDouble(4));
+            customerDTOList2.add(customerDTO);
+        }
+        return customerDTOList2;
     }
 }

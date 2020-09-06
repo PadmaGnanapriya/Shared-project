@@ -76,10 +76,11 @@ public class DatabaseAccessItem {
         pstm.executeUpdate();
     }
 
-    public static void deleteItem(String code) throws SQLException, ClassNotFoundException {
+    public static boolean deleteItem(String code) throws SQLException, ClassNotFoundException {
         Connection con=DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("DELETE FROM item WHERE id=?");
+        PreparedStatement pstm=con.prepareStatement("DELETE FROM item WHERE code=?");
         pstm.setObject(1,code);
-        pstm.executeUpdate();
+        return pstm.executeUpdate()>0;
+//        return false;
     }
 }

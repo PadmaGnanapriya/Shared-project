@@ -53,12 +53,8 @@ public class CustomerFormController extends Component {
         ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCode.getAllCustomers();
         ObservableList<CustomerTM> customerTMS = FXCollections.observableArrayList();
         for (CustomerDTO dto : customerDTOS) {
-//            Button btn = null;
-
             CustomerTM tm = new CustomerTM(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary());
             customerTMS.add(tm);
-
-
         }
         tbl.setItems(customerTMS);
     }
@@ -71,7 +67,14 @@ public class CustomerFormController extends Component {
 
     }
 
-    public void searchOnAction(ActionEvent actionEvent) {
+    public void searchOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCode.searchbar(txtSearch.getText());
+        ObservableList<CustomerTM> customerTMS = FXCollections.observableArrayList();
+        for (CustomerDTO dto : customerDTOS) {
+            CustomerTM tm = new CustomerTM(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary());
+            customerTMS.add(tm);
+        }
+        tbl.setItems(customerTMS);
     }
 
     public void newOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
