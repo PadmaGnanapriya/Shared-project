@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.uok.dao.DatabaseAccessCustomer;
 import lk.uok.dto.CustomerDTO;
@@ -32,7 +34,8 @@ public class CustomerFormController extends Component {
     public TextField txtName;
     public TextField txtAddress;
     public TextField txtSalary;
-
+    public Button btnUpdate;
+    public Button btnNew;
 
 
     public void initialize() throws SQLException, ClassNotFoundException {
@@ -95,6 +98,45 @@ public class CustomerFormController extends Component {
         txtName.setText(selectedRows.get(0).getName());
         txtAddress.setText(selectedRows.get(0).getAddress());
         txtSalary.setText(String.valueOf(selectedRows.get(0).getSalary()));
+    }
+
+    public void salaryFieldIsTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    private void checkUpdateCanPerform() throws SQLException, ClassNotFoundException {
+        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCustomer.getAllCustomers();
+        for(CustomerDTO dto:customerDTOS){
+            if(txtId.getText().equals(dto.getId())){
+                btnUpdate.setDisable(false);
+                btnNew.setDisable(true);
+                return;
+            }
+        }
+        btnNew.setDisable(false);
+        btnUpdate.setDisable(true);
+
+    }
+
+    public void idFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    public void nameFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    public void adressFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    public void searchFieldTyping(KeyEvent keyEvent) {
+        txtId.setText("");
+        txtName.setText("");
+        txtAddress.setText("");
+        txtSalary.setText("");
+        btnNew.setDisable(true);
+        btnUpdate.setDisable(true);
     }
 
 
