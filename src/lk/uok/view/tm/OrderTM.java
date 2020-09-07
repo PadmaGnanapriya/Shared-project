@@ -11,21 +11,25 @@ public class OrderTM {
     private String cusId;
     private String cusName;
     private String itemCode;
+    private String description;
     private int qty;
-    private double unitPrice;
 
     public OrderTM() {
     }
 
-    public OrderTM(String oid, String date, String cusId, String cusName, String itemCode, int qty, double unitPrice) {
+    public OrderTM(String oid, String date, String cusId, String cusName, String itemCode, String description, int qty, double unitPrice) {
         this.oid = oid;
         this.date = date;
         this.cusId = cusId;
         this.cusName = cusName;
         this.itemCode = itemCode;
+        this.description = description;
         this.qty = qty;
         this.unitPrice = unitPrice;
     }
+
+    private double unitPrice;
+
 
     public String getOid() {
         return oid;
@@ -65,6 +69,14 @@ public class OrderTM {
 
     public void setItemCode(String itemCode) {
         this.itemCode = itemCode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getQty() {

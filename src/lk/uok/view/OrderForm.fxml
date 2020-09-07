@@ -27,13 +27,14 @@
                         <HBox layoutX="392.0" layoutY="95.0" prefHeight="25.0" prefWidth="199.0" style="-fx-spacing: 10px;" />
                         <TableView fx:id="tbl" layoutX="11.0" layoutY="44.0" onMouseClicked="#onMouseClick" prefHeight="245.0" prefWidth="580.0">
                            <columns>
-                              <TableColumn fx:id="colOID" prefWidth="51.0" text="OID" />
-                              <TableColumn fx:id="colDate" prefWidth="102.0" text="Date" />
-                              <TableColumn fx:id="colCusID" prefWidth="64.0" text="CusID" />
-                              <TableColumn fx:id="colCusName" prefWidth="121.0" text="CusName" />
-                              <TableColumn fx:id="colItemCode" prefWidth="95.0" text="ItemCode" />
-                              <TableColumn fx:id="colQty" prefWidth="67.0" text="qty" />
-                              <TableColumn fx:id="colUnitPrice" prefWidth="79.0" text="Unit price" />
+                              <TableColumn fx:id="colOID" prefWidth="43.20001220703125" text="OID" />
+                              <TableColumn fx:id="colDate" prefWidth="96.00006103515625" text="Date" />
+                              <TableColumn fx:id="colCusID" prefWidth="44.0" text="CusID" />
+                              <TableColumn fx:id="colCusName" prefWidth="86.0" text="CusName" />
+                              <TableColumn fx:id="colItemCode" prefWidth="44.0" text="I-Code" />
+                              <TableColumn fx:id="colDescription" prefWidth="160.0" text="Description" />
+                              <TableColumn fx:id="colQty" prefWidth="30.0" text="qty" />
+                              <TableColumn fx:id="colUnitPrice" prefWidth="68.0" text="UnitPrice" />
                            </columns>
                         </TableView>
                         <HBox layoutX="165.0" layoutY="292.0" prefHeight="25.0" prefWidth="426.0" style="-fx-spacing: 10px;">

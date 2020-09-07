@@ -25,6 +25,7 @@ public class OrderFormController {
     public TableColumn colItemCode;
     public TableColumn colQty;
     public TableColumn colUnitPrice;
+    public TableColumn colDescription;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         colOID.setCellValueFactory(new PropertyValueFactory<>("oid"));
@@ -32,6 +33,7 @@ public class OrderFormController {
         colCusID.setCellValueFactory(new PropertyValueFactory<>("cusId"));
         colCusName.setCellValueFactory(new PropertyValueFactory<>("cusName"));
         colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
         loadData();
