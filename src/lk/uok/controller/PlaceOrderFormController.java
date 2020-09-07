@@ -105,7 +105,6 @@ public class PlaceOrderFormController {
         PlaceOrderTM tm=new PlaceOrderTM(itemDTO.getCode(),itemDTO.getDescription(),itemDTO.getUnitPrice(),Integer.parseInt(txtQty.getText())+priviousQty);
         orderTMS.add(tm);
         tbl.setItems(orderTMS);
-        System.out.println(orderTMS.size());
         for(int i=0;i<orderTMS.size();i++) tot+=orderTMS.get(i).getTotal();
         txtTotal.setText(String.valueOf(tot));
         cmbItemCode.requestFocus();
@@ -135,21 +134,18 @@ public class PlaceOrderFormController {
     }
 
     public void placeOderOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        OrdersDTO ordersDTO =new OrdersDTO(txtOderID.getText(),dateFormat.format(date),cmbXustomerID.getValue().toString());
+        DatabseAccessOrders.addOrder(ordersDTO);
+
         for(PlaceOrderTM tm:orderTMS){
             int count=DatabaseAccessItem.searchItem(tm.getCode()).getQtyOnHand();
             ItemDTO itemDTO =new ItemDTO(tm.getCode(),tm.getDescription(), tm.getUnitPrice(),count-tm.getQty());
             DatabaseAccessItem.updateItem(itemDTO);
-
-//            OrderDetailDTO orderDetailDTO=new OrderDetailDTO(txtOderID.getText(),tm.getCode(), tm.getQty(), tm.getUnitPrice() );
-//            DatabasseAcessOrderDetail.addOrderDetail(orderDetailDTO);
+            OrderDetailDTO orderDetailDTO=new OrderDetailDTO(txtOderID.getText(),tm.getCode(), tm.getQty(), tm.getUnitPrice() );
+            DatabasseAcessOrderDetail.addOrderDetail(orderDetailDTO);
         }
-
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        OrdersDTO ordersDTO =new OrdersDTO(txtOderID.getText(),dateFormat.format(date),cmbXustomerID.getValue().toString());
-        DatabseAccessOrders.addOrder(ordersDTO);
-
     }
 
     public void customerIdOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
