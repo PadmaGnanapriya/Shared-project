@@ -3,10 +3,7 @@ package lk.uok.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -107,10 +104,12 @@ public class ItemFormController {
 
     public void unitPriceFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
         checkUpdateCanPerform();
+
     }
 
     public void gtyOnHandFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
         checkUpdateCanPerform();
+
     }
 
     public void searchFieldTyping(KeyEvent keyEvent) {
@@ -133,5 +132,29 @@ public class ItemFormController {
         }
         btnNew.setDisable(false);
         btnUpdate.setDisable(true);
+    }
+
+    public void unitPriceOnKeyReliease(KeyEvent keyEvent) {
+        try{
+            Double num = Double.parseDouble(txtUnitPrice.getText());
+        } catch (NumberFormatException e) {
+            Alert error=new Alert(Alert.AlertType.ERROR,"Not allowed for non numeric values");
+            error.show();
+            txtUnitPrice.setText(txtUnitPrice.getText().substring(0,txtUnitPrice.getText().length()-1));
+            txtUnitPrice.requestFocus();
+            return;
+        }
+    }
+
+    public void qtyOnHandOnReleaseAction(KeyEvent keyEvent) {
+        try{
+            Double num = Double.parseDouble(txtQtyONHand.getText());
+        } catch (NumberFormatException e) {
+            Alert error=new Alert(Alert.AlertType.ERROR,"Not allowed for non numeric values");
+            error.show();
+            txtQtyONHand.setText(txtQtyONHand.getText().substring(0,txtQtyONHand.getText().length()-1));
+            txtQtyONHand.requestFocus();
+            return;
+        }
     }
 }

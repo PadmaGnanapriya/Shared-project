@@ -18,8 +18,8 @@
                <children>
                   <TextField fx:id="txtCode" onAction="#codeOnAction" onKeyTyped="#codeFieldTyping" prefHeight="25.0" prefWidth="95.0" promptText="code" />
                   <TextField fx:id="txtDescription" onKeyTyped="#descriptionFieldTyping" prefHeight="25.0" prefWidth="163.0" promptText="decription" />
-                  <TextField fx:id="txtUnitPrice" onKeyTyped="#unitPriceFieldTyping" prefHeight="25.0" prefWidth="147.0" promptText="unit price" />
-                  <TextField fx:id="txtQtyONHand" onKeyTyped="#gtyOnHandFieldTyping" prefHeight="25.0" prefWidth="142.0" promptText="qty on hand" />
+                  <TextField fx:id="txtUnitPrice" onKeyReleased="#unitPriceOnKeyReliease" onKeyTyped="#unitPriceFieldTyping" prefHeight="25.0" prefWidth="147.0" promptText="unit price" />
+                  <TextField fx:id="txtQtyONHand" onKeyReleased="#qtyOnHandOnReleaseAction" onKeyTyped="#gtyOnHandFieldTyping" prefHeight="25.0" prefWidth="142.0" promptText="qty on hand" />
                </children>
             </HBox>
             <HBox layoutX="11.0" layoutY="97.0" prefHeight="25.0" prefWidth="580.0" style="-fx-spacing: 10px;">

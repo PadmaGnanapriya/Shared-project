@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.uok.dao.DatabaseAccessCustomer;
@@ -137,6 +138,20 @@ public class CustomerFormController extends Component {
         txtSalary.setText("");
         btnNew.setDisable(true);
         btnUpdate.setDisable(true);
+    }
+
+
+    public void Onrelaease(KeyEvent keyEvent) {
+        try {
+            Double num = Double.parseDouble(txtSalary.getText());
+        } catch (NumberFormatException e) {
+            Alert error=new Alert(Alert.AlertType.ERROR,"Not allowed for non numeric values");
+            error.show();
+            txtSalary.setText(txtSalary.getText().substring(0,txtSalary.getText().length()-1));
+            txtSalary.requestFocus();
+            return;
+        }
+
     }
 
 

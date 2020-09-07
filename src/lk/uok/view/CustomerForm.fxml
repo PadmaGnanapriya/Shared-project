@@ -16,7 +16,7 @@
             <TextField fx:id="txtId" onAction="#idOnAction" onKeyTyped="#idFieldTyping" prefHeight="25.0" prefWidth="72.0" promptText="id" />
             <TextField fx:id="txtName" onKeyTyped="#nameFieldTyping" prefHeight="25.0" prefWidth="139.0" promptText="name" />
             <TextField fx:id="txtAddress" onKeyTyped="#adressFieldTyping" prefHeight="25.0" prefWidth="225.0" promptText="address" />
-            <TextField fx:id="txtSalary" onKeyTyped="#salaryFieldIsTyping" prefHeight="25.0" prefWidth="111.0" promptText="salary" />
+            <TextField fx:id="txtSalary" onKeyReleased="#Onrelaease" onKeyTyped="#salaryFieldIsTyping" prefHeight="25.0" prefWidth="111.0" promptText="salary" />
          </children>
       </HBox>
       <HBox layoutX="11.0" layoutY="97.0" prefHeight="25.0" prefWidth="580.0" style="-fx-spacing: 10px;">
