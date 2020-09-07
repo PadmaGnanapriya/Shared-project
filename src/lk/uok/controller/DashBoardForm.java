@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.uok.dao.DatabaseAccessCustomer;
@@ -14,6 +16,7 @@ import lk.uok.dao.DatabaseAccessItem;
 import lk.uok.dto.CustomerDTO;
 import lk.uok.dto.ItemDTO;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -35,6 +38,12 @@ public class DashBoardForm {
     public Button navBtn;
     public Label customerCount;
     public Label itemCount;
+    public Button btnCustomer;
+    public Button btnItem;
+    public Button btnOrder;
+    public Button btnPlaceOrder;
+    public Button btnReport;
+    public Button btnBackup;
 
     public void initialize() throws InterruptedException, SQLException, ClassNotFoundException {
         genarateOrderDate();
@@ -104,4 +113,22 @@ public class DashBoardForm {
 
     public void onBackupPerform(ActionEvent actionEvent) {
     }
+
+
+
+
+    public void onMouserMove(MouseEvent mouseEvent) { btnCustomer.setStyle("-fx-background-color: cyan; -fx-padding:10px"); }
+    public void onMouserExit(MouseEvent mouseEvent) { btnCustomer.setStyle("-fx-background-color: darkcyan; -fx-padding:10px"); }
+    public void onMouserMove2(MouseEvent mouseEvent) { btnItem.setStyle("-fx-background-color: cyan; -fx-padding:10px"); }
+    public void onMouserExit2(MouseEvent mouseEvent) { btnItem.setStyle("-fx-background-color: darkcyan; -fx-padding:10px"); }
+    public void onMouserMove3(MouseEvent mouseEvent) { btnOrder.setStyle("-fx-background-color: cyan; -fx-padding:10px"); }
+    public void onMouserExit3(MouseEvent mouseEvent) { btnOrder.setStyle("-fx-background-color: darkcyan; -fx-padding:10px"); }
+    public void onMouserMove4(MouseEvent mouseEvent) { btnPlaceOrder.setStyle("-fx-background-color: cyan; -fx-padding:10px"); }
+    public void onMouserExit4(MouseEvent mouseEvent) { btnPlaceOrder.setStyle("-fx-background-color: darkcyan; -fx-padding:10px"); }
+    public void onMouserMove5(MouseEvent mouseEvent) { btnReport.setStyle("-fx-background-color: cyan; -fx-padding:10px"); }
+    public void onMouserExit5(MouseEvent mouseEvent) { btnReport.setStyle("-fx-background-color: darkcyan; -fx-padding:10px"); }
+    public void onMouserMove6(MouseEvent mouseEvent) { btnBackup.setStyle("-fx-background-color: cyan; -fx-padding:10px"); }
+    public void onMouserExit6(MouseEvent mouseEvent) { btnBackup.setStyle("-fx-background-color: darkcyan; -fx-padding:10px"); }
+
+
 }

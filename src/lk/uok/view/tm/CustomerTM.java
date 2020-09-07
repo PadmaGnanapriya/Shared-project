@@ -22,6 +22,7 @@ public class CustomerTM {
     private Button btn=new Button("Delete");
 
 
+
     public CustomerTM() {
     }
 
@@ -30,6 +31,7 @@ public class CustomerTM {
         this.name = name;
         this.address = address;
         this.salary = salary;
+        btn.setStyle("-fx-background-color: #d35400");
         btn.setOnAction(e->{
             ButtonType ok= new ButtonType("OK",
                     ButtonBar.ButtonData.OK_DONE);
