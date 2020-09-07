@@ -20,7 +20,7 @@ public class DatabaseAccessOrderForm {
     public static ObservableList<OrderTM> getAllDate() throws SQLException, ClassNotFoundException {
         Connection con = DBConnection.getInstance().getConnection();
 //        PreparedStatement pst7m=con.prepareStatement("select o.id, o.date, o.customerId,c.name, od.itemCode, od.qty, od.unitPrice from orders o, orderdetail od, customer c where o.id=od.orderId and c.id=o.customerId;");
-        PreparedStatement pstm=con.prepareStatement("select o.id, o.date, o.customerId,c.name, od.itemCode, i.description, od.qty, od.unitPrice from orders o, orderdetail od, customer c, item i where o.id=od.orderId and c.id=o.customerId and i.code=od.itemCode;");
+        PreparedStatement pstm=con.prepareStatement("select o.id, o.date, o.customerId,c.name, od.itemCode, i.description, od.qty, od.unitPrice from Orders o, OrderDetail od, Customer c, Item i where o.id=od.orderId and c.id=o.customerId and i.code=od.itemCode;");
         ResultSet set = pstm.executeQuery();
         ObservableList<OrderTM> customerList= FXCollections.observableArrayList();
         while (set.next()){

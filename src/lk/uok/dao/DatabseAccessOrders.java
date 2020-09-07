@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DatabseAccessOrders {
     public static void addOrder(OrdersDTO dto) throws SQLException, ClassNotFoundException {
         Connection con= DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("INSERT INTO orders VALUES (?,?,?)");
+        PreparedStatement pstm=con.prepareStatement("INSERT INTO Orders VALUES (?,?,?)");
         pstm.setObject(1,dto.getId());
         pstm.setObject(2, dto.getDate());
         pstm.setObject(3,dto.getCustomerId());

@@ -1,6 +1,5 @@
 package lk.uok.controller;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,16 +8,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import lk.uok.dao.DatabaseAccessCode;
 import lk.uok.dao.DatabaseAccessItem;
 import lk.uok.dto.ItemDTO;
-import lk.uok.view.tm.CustomerTM;
 import lk.uok.view.tm.ItemTM;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import static sun.net.www.MimeTable.loadTable;
 
 /**
  * Created by Padma Gnanapiya (SE/2017/014)

@@ -7,8 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
-import lk.uok.dao.DatabaseAccessCode;
+import lk.uok.dao.DatabaseAccessCustomer;
 import lk.uok.dao.DatabaseAccessItem;
 import lk.uok.dao.DatabasseAcessOrderDetail;
 import lk.uok.dao.DatabseAccessOrders;
@@ -16,12 +17,9 @@ import lk.uok.dto.CustomerDTO;
 import lk.uok.dto.ItemDTO;
 import lk.uok.dto.OrderDetailDTO;
 import lk.uok.dto.OrdersDTO;
-import lk.uok.view.tm.CustomerTM;
-import lk.uok.view.tm.ItemTM;
 import lk.uok.view.tm.PlaceOrderTM;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -73,7 +71,7 @@ public class PlaceOrderFormController {
     }
 
     private void loadCustomer() throws SQLException, ClassNotFoundException {
-        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCode.getAllCustomers();
+        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCustomer.getAllCustomers();
         ObservableList<String> customerIds = FXCollections.observableArrayList();
         for (CustomerDTO dto : customerDTOS) {
             customerIds.add(dto.getId());
@@ -149,7 +147,7 @@ public class PlaceOrderFormController {
     }
 
     public void customerIdOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        CustomerDTO customerDTO=DatabaseAccessCode.searchCustomer(cmbXustomerID.getValue().toString());
+        CustomerDTO customerDTO= DatabaseAccessCustomer.searchCustomer(cmbXustomerID.getValue().toString());
         txtCustomerName.setText(customerDTO.getName());
     }
 
@@ -165,5 +163,12 @@ public class PlaceOrderFormController {
 
     public void qtyOnAction(ActionEvent actionEvent) {
         btnAdd.requestFocus();
+    }
+
+    public void deleteOnAction(ActionEvent actionEvent) {
+    }
+
+    public void qtyOnAdding(InputMethodEvent inputMethodEvent) {
+
     }
 }

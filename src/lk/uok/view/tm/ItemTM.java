@@ -4,8 +4,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import lk.uok.controller.ItemFormController;
-import lk.uok.dao.DatabaseAccessCode;
 import lk.uok.dao.DatabaseAccessItem;
 
 import java.sql.SQLException;

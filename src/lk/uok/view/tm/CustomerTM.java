@@ -1,12 +1,10 @@
 package lk.uok.view.tm;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import lk.uok.dao.DatabaseAccessCode;
-import lk.uok.dao.DatabaseAccessItem;
+import lk.uok.dao.DatabaseAccessCustomer;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -44,7 +42,7 @@ public class CustomerTM {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.orElse(no)==ok){
                 try {
-                    boolean isDeleted = DatabaseAccessCode.deleteCustomer(this.getId());
+                    boolean isDeleted = DatabaseAccessCustomer.deleteCustomer(this.getId());
 
                     if (isDeleted){
                         new Alert(Alert.AlertType.CONFIRMATION,"Deleted !",

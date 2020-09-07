@@ -1,26 +1,19 @@
 package lk.uok.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import lk.uok.dao.DatabaseAccessCode;
+import lk.uok.dao.DatabaseAccessCustomer;
 import lk.uok.dto.CustomerDTO;
 import lk.uok.view.tm.CustomerTM;
 
-import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * Created by Padma Gnanapiya (SE/2017/014)
@@ -55,7 +48,7 @@ public class CustomerFormController extends Component {
 
 
     private void loadAllCustomers() throws SQLException, ClassNotFoundException {
-        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCode.getAllCustomers();
+        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCustomer.getAllCustomers();
         ObservableList<CustomerTM> customerTMS = FXCollections.observableArrayList();
         for (CustomerDTO dto : customerDTOS) {
             CustomerTM tm = new CustomerTM(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary());
@@ -64,7 +57,7 @@ public class CustomerFormController extends Component {
         tbl.setItems(customerTMS);
     }
     public void idOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        CustomerDTO dto=DatabaseAccessCode.searchCustomer(txtId.getText());
+        CustomerDTO dto= DatabaseAccessCustomer.searchCustomer(txtId.getText());
         txtName.setText(dto.getName());
         txtAddress.setText(dto.getAddress());
         txtSalary.setText(String.valueOf(dto.getSalary()));
@@ -73,7 +66,7 @@ public class CustomerFormController extends Component {
     }
 
     public void searchOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCode.searchbar(txtSearch.getText());
+        ArrayList<CustomerDTO> customerDTOS = DatabaseAccessCustomer.searchbar(txtSearch.getText());
         ObservableList<CustomerTM> customerTMS = FXCollections.observableArrayList();
         for (CustomerDTO dto : customerDTOS) {
             CustomerTM tm = new CustomerTM(dto.getId(), dto.getName(), dto.getAddress(), dto.getSalary());
@@ -84,12 +77,12 @@ public class CustomerFormController extends Component {
 
     public void newOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         CustomerDTO dto=new CustomerDTO(txtId.getText(),txtName.getText(),txtAddress.getText(),Double.parseDouble(txtSalary.getText()));
-        DatabaseAccessCode.addCustomer(dto);
+        DatabaseAccessCustomer.addCustomer(dto);
     }
 
     public void updateOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         CustomerDTO dto=new CustomerDTO(txtId.getText(),txtName.getText(),txtAddress.getText(),Double.parseDouble(txtSalary.getText()));
-        DatabaseAccessCode.updateCustomer(dto);
+        DatabaseAccessCustomer.updateCustomer(dto);
     }
 
     public void tableClickAction(SortEvent<TableView> tableViewSortEvent) {

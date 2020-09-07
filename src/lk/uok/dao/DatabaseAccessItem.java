@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class DatabaseAccessItem {
     public static void addItem(ItemDTO dto) throws SQLException, ClassNotFoundException {
         Connection con = DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("INSERT INTO item VALUE(?,?,?,?)");
+        PreparedStatement pstm=con.prepareStatement("INSERT INTO Item VALUE(?,?,?,?)");
         pstm.setObject(1,dto.getCode());
         pstm.setObject(2,dto.getDescription());
         pstm.setObject(3,dto.getUnitPrice());
@@ -27,7 +27,7 @@ public class DatabaseAccessItem {
 
     public static ArrayList<ItemDTO> getAllItem() throws SQLException, ClassNotFoundException {
         Connection con =DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("SELECT * FROM item");
+        PreparedStatement pstm=con.prepareStatement("SELECT * FROM Item");
         ResultSet resultSet=pstm.executeQuery();
         ArrayList<ItemDTO> itemDTOList=new ArrayList<>();
         while (resultSet.next()){
@@ -40,7 +40,7 @@ public class DatabaseAccessItem {
 
     public static ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException {
         Connection con= DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("SELECT * FROM item WHERE code=?");
+        PreparedStatement pstm=con.prepareStatement("SELECT * FROM Item WHERE code=?");
         pstm.setObject(1,code);
         ResultSet resultSet=pstm.executeQuery();
         if(resultSet.next()){
@@ -54,7 +54,7 @@ public class DatabaseAccessItem {
     public static ArrayList<ItemDTO> searchbar(String code) throws SQLException, ClassNotFoundException {
         ArrayList<ItemDTO> itemDTOList2=new ArrayList<>();
         Connection con= DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("SELECT * FROM item WHERE code LIKE ? OR unitPrice LIKE ? OR description LIKE ? ");
+        PreparedStatement pstm=con.prepareStatement("SELECT * FROM Item WHERE code LIKE ? OR unitPrice LIKE ? OR description LIKE ? ");
         pstm.setObject(1,"%"+code+"%");
         pstm.setObject(2,"%"+code+"%");
         pstm.setObject(3,"%"+code+"%");
@@ -68,7 +68,7 @@ public class DatabaseAccessItem {
 
     public static void updateItem(ItemDTO dto) throws SQLException, ClassNotFoundException {
         Connection con=DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("UPDATE item SET description =?, unitPrice=?, qtyOnHand=? WHERE code=?");
+        PreparedStatement pstm=con.prepareStatement("UPDATE Item SET description =?, unitPrice=?, qtyOnHand=? WHERE code=?");
         pstm.setObject(1,dto.getDescription());
         pstm.setObject(2,dto.getUnitPrice());
         pstm.setObject(3,dto.getQtyOnHand());
@@ -80,7 +80,7 @@ public class DatabaseAccessItem {
 
     public static boolean deleteItem(String code) throws SQLException, ClassNotFoundException {
         Connection con=DBConnection.getInstance().getConnection();
-        PreparedStatement pstm=con.prepareStatement("DELETE FROM item WHERE code=?");
+        PreparedStatement pstm=con.prepareStatement("DELETE FROM Item WHERE code=?");
         pstm.setObject(1,code);
         return pstm.executeUpdate()>0;
 //        return false;

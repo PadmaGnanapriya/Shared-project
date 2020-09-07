@@ -9,11 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-import lk.uok.dao.DatabaseAccessCode;
+import lk.uok.dao.DatabaseAccessCustomer;
 import lk.uok.dao.DatabaseAccessItem;
 import lk.uok.dto.CustomerDTO;
 import lk.uok.dto.ItemDTO;
-import lk.uok.view.tm.CustomerTM;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,9 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Padma Gnanapiya (SE/2017/014)
@@ -57,7 +54,7 @@ public class DashBoardForm {
     }
 
     private void getCustomerCount() throws SQLException, ClassNotFoundException {
-        ArrayList<CustomerDTO> customerDTOS= DatabaseAccessCode.getAllCustomers();
+        ArrayList<CustomerDTO> customerDTOS= DatabaseAccessCustomer.getAllCustomers();
         int count=customerDTOS.size();
         customerCount.setText(String.valueOf(count));
     }
