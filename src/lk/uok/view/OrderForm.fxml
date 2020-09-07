@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.uok.controller.OrderFormController"
-            prefHeight="322.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="322.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.uok.controller.OrderFormController">
+   <children>
+      <AnchorPane prefHeight="322.0" prefWidth="600.0">
+         <children>
+            <AnchorPane prefHeight="322.0" prefWidth="600.0">
+               <children>
+                  <AnchorPane prefHeight="322.0" prefWidth="600.0" style="-fx-background-color: #c7ecee;">
+                     <children>
+                        <Label layoutX="228.0" layoutY="2.0" text="Order Form" textFill="#363333">
+                           <font>
+                              <Font name="Serif Bold" size="27.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="14.0" layoutY="31.0" prefHeight="2.0" prefWidth="569.0" />
+                        <HBox layoutX="9.0" layoutY="66.0" prefHeight="27.0" prefWidth="580.0" style="-fx-spacing: 10px;" />
+                        <HBox layoutX="392.0" layoutY="95.0" prefHeight="25.0" prefWidth="199.0" style="-fx-spacing: 10px;" />
+                        <TableView fx:id="tbl" layoutX="11.0" layoutY="44.0" onMouseClicked="#onMouseClick" prefHeight="245.0" prefWidth="580.0">
+                           <columns>
+                              <TableColumn fx:id="colOID" prefWidth="51.0" text="OID" />
+                              <TableColumn fx:id="colDate" prefWidth="102.0" text="Date" />
+                              <TableColumn fx:id="colCusID" prefWidth="64.0" text="CusID" />
+                              <TableColumn fx:id="colCusName" prefWidth="121.0" text="CusName" />
+                              <TableColumn fx:id="colItemCode" prefWidth="95.0" text="ItemCode" />
+                              <TableColumn fx:id="colQty" prefWidth="67.0" text="qty" />
+                              <TableColumn fx:id="colUnitPrice" prefWidth="79.0" text="Unit price" />
+                           </columns>
+                        </TableView>
+                        <HBox layoutX="165.0" layoutY="292.0" prefHeight="25.0" prefWidth="426.0" style="-fx-spacing: 10px;">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Cancle" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
