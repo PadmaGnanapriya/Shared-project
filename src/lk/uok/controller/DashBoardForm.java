@@ -27,12 +27,8 @@ public class DashBoardForm {
     public void initialize() throws InterruptedException {
         genarateOrderDate();
         genarateTime();
-//
 //        final String IDLE_BUTTON_STYLE = "-fx-background-color:  darkcyan; -fx-padding: 10px";
 //        final String HOVERED_BUTTON_STYLE = "-fx-background-color:  cyan; -fx-padding: 10px";
-//
-//
-//
 //        navBtn.setOnMouseEntered(e -> navBtn.setStyle(HOVERED_BUTTON_STYLE));
 //        navBtn.setOnMouseExited(e -> navBtn.setStyle(IDLE_BUTTON_STYLE));
     }
@@ -43,16 +39,6 @@ public class DashBoardForm {
         int h = now.get(Calendar.HOUR_OF_DAY);
         int m = now.get(Calendar.MINUTE);
         txtClock.setText(" " + h + " : " + m );
-
-
-//        while(true){
-//
-//            m++;
-//            if(m==60){h++;m=0;}
-//            Thread.sleep(1000);
-//            txtClock.setText(" " + h + " : " + m );
-//        }
-
     }
 
     private void loadUi(String location) throws IOException {
@@ -66,7 +52,6 @@ public class DashBoardForm {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         txtOrderDate.setText(dateFormat.format(date));
     }
-
 
     public void onCustomerPerform(ActionEvent actionEvent) throws IOException {
         loadUi("CustomerForm");

@@ -10,8 +10,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.uok.dao.DatabaseAccessCode;
 import lk.uok.dao.DatabaseAccessItem;
+import lk.uok.dao.DatabasseAcessOrderDetail;
+import lk.uok.dao.DatabseAccessOrders;
 import lk.uok.dto.CustomerDTO;
 import lk.uok.dto.ItemDTO;
+import lk.uok.dto.OrderDetailDTO;
+import lk.uok.dto.OrdersDTO;
 import lk.uok.view.tm.CustomerTM;
 import lk.uok.view.tm.ItemTM;
 import lk.uok.view.tm.PlaceOrderTM;
@@ -19,7 +23,10 @@ import lk.uok.view.tm.PlaceOrderTM;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Padma Gnanapiya (SE/2017/014)
@@ -132,8 +139,16 @@ public class PlaceOrderFormController {
             int count=DatabaseAccessItem.searchItem(tm.getCode()).getQtyOnHand();
             ItemDTO itemDTO =new ItemDTO(tm.getCode(),tm.getDescription(), tm.getUnitPrice(),count-tm.getQty());
             DatabaseAccessItem.updateItem(itemDTO);
-            System.out.println("UUUUU");
+
+//            OrderDetailDTO orderDetailDTO=new OrderDetailDTO(txtOderID.getText(),tm.getCode(), tm.getQty(), tm.getUnitPrice() );
+//            DatabasseAcessOrderDetail.addOrderDetail(orderDetailDTO);
         }
+
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        OrdersDTO ordersDTO =new OrdersDTO(txtOderID.getText(),dateFormat.format(date),cmbXustomerID.getValue().toString());
+        DatabseAccessOrders.addOrder(ordersDTO);
 
     }
 
