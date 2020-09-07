@@ -3,12 +3,16 @@ package lk.uok.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import lk.uok.dao.DatabaseAccessCustomer;
 import lk.uok.dao.DatabaseAccessItem;
+import lk.uok.dto.CustomerDTO;
 import lk.uok.dto.ItemDTO;
 import lk.uok.view.tm.ItemTM;
 
@@ -32,6 +36,8 @@ public class ItemFormController {
     public TextField txtQtyONHand;
     public TableView tbl;
     public TextField searchBar;
+    public Button btnUpdate;
+    public Button btnNew;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -89,5 +95,43 @@ public class ItemFormController {
         txtDescription.setText(selectedRows.get(0).getDescription());
         txtUnitPrice.setText(String.valueOf(selectedRows.get(0).getUnitPrice()));
         txtQtyONHand.setText(String.valueOf(selectedRows.get(0).getQtyOnHand()));
+    }
+
+    public void descriptionFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    public void codeFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    public void unitPriceFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    public void gtyOnHandFieldTyping(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
+        checkUpdateCanPerform();
+    }
+
+    public void searchFieldTyping(KeyEvent keyEvent) {
+        txtCode.setText("");
+        txtDescription.setText("");
+        txtUnitPrice.setText("");
+        txtQtyONHand.setText("");
+        btnUpdate.setDisable(true);
+        btnNew.setDisable(true);
+    }
+
+    public void checkUpdateCanPerform() throws SQLException, ClassNotFoundException {
+        ArrayList<ItemDTO> itemDTOS = DatabaseAccessItem.getAllItem();
+        for(ItemDTO dto:itemDTOS){
+            if(txtCode.getText().equals(dto.getCode())){
+                btnUpdate.setDisable(false);
+                btnNew.setDisable(true);
+                return;
+            }
+        }
+        btnNew.setDisable(false);
+        btnUpdate.setDisable(true);
     }
 }

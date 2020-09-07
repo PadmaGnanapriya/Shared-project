@@ -51,6 +51,7 @@ public class PlaceOrderFormController {
     public Button btnAdd;
     public Button btnCancle;
     public Button btnPlaceOrder;
+    public Button btnDelete;
 
     ObservableList<PlaceOrderTM> orderTMS=FXCollections.observableArrayList();
 
@@ -133,8 +134,11 @@ public class PlaceOrderFormController {
         txtTotal.setText(String.valueOf(tot));
         btnCancle.setDisable(false);
         btnPlaceOrder.setDisable(false);
+        btnDelete.setDisable(true);
         cmbItemCode.requestFocus();
     }
+
+
 
     public void cancleOnAction(ActionEvent actionEvent) {
         txtDescription.setText("");
@@ -148,6 +152,7 @@ public class PlaceOrderFormController {
     }
 
     public void onMouseClick(MouseEvent mouseEvent) {
+        btnDelete.setDisable(false);
     }
 
     public void cancleOrderOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
@@ -207,6 +212,11 @@ public class PlaceOrderFormController {
     public void deleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         PlaceOrderTM tm= (PlaceOrderTM) tbl.getSelectionModel().getSelectedItem();
         orderTMS.remove(tm);
+        tbl.getSelectionModel().clearSelection();
+        btnDelete.setDisable(true);
+        double tot=0;
+        for(int i=0;i<orderTMS.size();i++) tot+=orderTMS.get(i).getTotal();
+        txtTotal.setText(String.valueOf(tot));
 
     }
 

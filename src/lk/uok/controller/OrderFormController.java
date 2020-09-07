@@ -2,6 +2,7 @@ package lk.uok.controller;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,6 +30,7 @@ public class OrderFormController {
     public TableColumn colQty;
     public TableColumn colUnitPrice;
     public TableColumn colDescription;
+    public Button btnDelete;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         colOID.setCellValueFactory(new PropertyValueFactory<>("oid"));
@@ -49,15 +51,18 @@ public class OrderFormController {
     }
 
     public void onMouseClick(MouseEvent mouseEvent) {
+        btnDelete.setDisable(false);
     }
 
     public void reloadOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        btnDelete.setDisable(true);
         loadData();
     }
 
     public void deleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         OrderTM tm= (OrderTM) tbl.getSelectionModel().getSelectedItem();
         DatabasseAcessOrderDetail.deleteOrderDetail(tm.getItemCode());
+        btnDelete.setDisable(true);
         loadData();
     }
 }
