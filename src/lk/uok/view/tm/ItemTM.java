@@ -49,6 +49,7 @@ public class ItemTM {
                     if (isDeleted){
                         new Alert(Alert.AlertType.CONFIRMATION,"Deleted !",
                                 ButtonType.OK).show();
+
                     }else{
                         new Alert(Alert.AlertType.WARNING,"Try Again !",
                                 ButtonType.OK).show();

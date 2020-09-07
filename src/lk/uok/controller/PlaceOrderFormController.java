@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.uok.dao.DatabaseAccessCustomer;
 import lk.uok.dao.DatabaseAccessItem;
@@ -48,6 +49,8 @@ public class PlaceOrderFormController {
     public TextField txtCustomerName;
     public TextField txtTotal;
     public Button btnAdd;
+    public Button btnCancle;
+    public Button btnPlaceOrder;
 
     ObservableList<PlaceOrderTM> orderTMS=FXCollections.observableArrayList();
 
@@ -59,6 +62,21 @@ public class PlaceOrderFormController {
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         loadCustomer();
         loadItem();
+        loadOrderId();
+    }
+
+    private void loadOrderId() throws SQLException, ClassNotFoundException {
+        String lastId=DatabseAccessOrders.getLastOrderId();
+        try {
+
+            String order_id = lastId.replaceAll("[\\[\\](){}]","");
+            int lastDigits = Integer.parseInt(order_id.split("[A-Z]")[1])+1;
+            txtOderID.setText( "D"+String.format("%03d", lastDigits).substring(0, 3));
+        }catch (Exception ex){
+            System.out.println("Error in Oderdetail \n"+ex);
+            txtOderID.setText("D001");
+        }
+
     }
 
     private void loadItem() throws SQLException, ClassNotFoundException {
@@ -81,12 +99,20 @@ public class PlaceOrderFormController {
 
     public void addOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         if(txtCustomerName.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Please Select Customer Id", "alert", JOptionPane.ERROR_MESSAGE);
+            Alert alert= new Alert(Alert.AlertType.ERROR,"Please Select Customer Id");
+            alert.show();
             cmbXustomerID.requestFocus();
             return;
         }
         if(txtQty.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Please Select amount of item", "alert", JOptionPane.ERROR_MESSAGE);
+            Alert alert= new Alert(Alert.AlertType.ERROR,"Please Select amount of item");
+            alert.show();
+            txtQty.requestFocus();
+            return;
+        }
+        if(Integer.parseInt(txtQty.getText())>Integer.parseInt(txtQtyONHand.getText())){
+            Alert alert= new Alert(Alert.AlertType.ERROR,"qty should be less or equal for qtyOnHand");
+            alert.show();
             txtQty.requestFocus();
             return;
         }
@@ -105,6 +131,8 @@ public class PlaceOrderFormController {
         tbl.setItems(orderTMS);
         for(int i=0;i<orderTMS.size();i++) tot+=orderTMS.get(i).getTotal();
         txtTotal.setText(String.valueOf(tot));
+        btnCancle.setDisable(false);
+        btnPlaceOrder.setDisable(false);
         cmbItemCode.requestFocus();
     }
 
@@ -113,6 +141,9 @@ public class PlaceOrderFormController {
         txtUnitPrice.setText("");
         txtQtyONHand.setText("");
         txtQty.setText("");
+        btnPlaceOrder.setDisable(true);
+        btnCancle.setDisable(true);
+        btnAdd.setDisable(true);
         cmbItemCode.requestFocus();
     }
 
@@ -124,14 +155,11 @@ public class PlaceOrderFormController {
         tbl.setItems(orderTMS);
         txtTotal.setText("");
         txtCustomerName.setText("");
-//       cmbItemCode.setItems(null);
-//       loadCustomer();
-//       loadItem();
         cancleOnAction(actionEvent);
 
     }
 
-    public void placeOderOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void placeOderOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, InterruptedException {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         OrdersDTO ordersDTO =new OrdersDTO(txtOderID.getText(),dateFormat.format(date),cmbXustomerID.getValue().toString());
@@ -144,6 +172,11 @@ public class PlaceOrderFormController {
             OrderDetailDTO orderDetailDTO=new OrderDetailDTO(txtOderID.getText(),tm.getCode(), tm.getQty(), tm.getUnitPrice() );
             DatabasseAcessOrderDetail.addOrderDetail(orderDetailDTO);
         }
+        Thread.sleep(300);
+        cancleOrderOnAction(actionEvent);
+        loadOrderId();
+        cmbXustomerID.requestFocus();
+
     }
 
     public void customerIdOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
@@ -162,13 +195,22 @@ public class PlaceOrderFormController {
     }
 
     public void qtyOnAction(ActionEvent actionEvent) {
+        if(Integer.parseInt(txtQty.getText())>Integer.parseInt(txtQtyONHand.getText())){
+            Alert alert= new Alert(Alert.AlertType.ERROR,"qty should be less or equal for qtyOnHand");
+            alert.show();
+            txtQty.requestFocus();
+            return;
+        }
         btnAdd.requestFocus();
     }
 
-    public void deleteOnAction(ActionEvent actionEvent) {
+    public void deleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        PlaceOrderTM tm= (PlaceOrderTM) tbl.getSelectionModel().getSelectedItem();
+        orderTMS.remove(tm);
+
     }
 
-    public void qtyOnAdding(InputMethodEvent inputMethodEvent) {
-
+    public void qtyOnTyped(KeyEvent keyEvent) {
+        btnAdd.setDisable(false);
     }
 }

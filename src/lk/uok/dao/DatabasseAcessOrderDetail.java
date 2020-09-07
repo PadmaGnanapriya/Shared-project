@@ -22,4 +22,11 @@ public class DatabasseAcessOrderDetail {
         pstm.setObject(4,dto.getUnitPrice());
         pstm.executeUpdate();
     }
+
+    public static void deleteOrderDetail(String itemCode) throws SQLException, ClassNotFoundException {
+        Connection con= DBConnection.getInstance().getConnection();
+        PreparedStatement pstm=con.prepareStatement("DELETE FROM OrderDetail WHERE itemCode=?");
+        pstm.setObject(1, itemCode);
+        pstm.execute();
+    }
 }

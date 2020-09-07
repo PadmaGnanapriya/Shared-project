@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="322.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.uok.controller.OrderFormController">
+<AnchorPane prefHeight="322.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.uok.controller.OrderFormController">
    <children>
       <AnchorPane prefHeight="322.0" prefWidth="600.0">
          <children>
@@ -25,7 +25,7 @@
                         <Separator layoutX="14.0" layoutY="31.0" prefHeight="2.0" prefWidth="569.0" />
                         <HBox layoutX="9.0" layoutY="66.0" prefHeight="27.0" prefWidth="580.0" style="-fx-spacing: 10px;" />
                         <HBox layoutX="392.0" layoutY="95.0" prefHeight="25.0" prefWidth="199.0" style="-fx-spacing: 10px;" />
-                        <TableView fx:id="tbl" layoutX="11.0" layoutY="44.0" onMouseClicked="#onMouseClick" prefHeight="245.0" prefWidth="580.0">
+                        <TableView fx:id="tbl" layoutX="9.0" layoutY="39.0" onMouseClicked="#onMouseClick" prefHeight="245.0" prefWidth="580.0">
                            <columns>
                               <TableColumn fx:id="colOID" prefWidth="43.20001220703125" text="OID" />
                               <TableColumn fx:id="colDate" prefWidth="96.00006103515625" text="Date" />
@@ -37,9 +37,10 @@
                               <TableColumn fx:id="colUnitPrice" prefWidth="68.0" text="UnitPrice" />
                            </columns>
                         </TableView>
-                        <HBox layoutX="165.0" layoutY="292.0" prefHeight="25.0" prefWidth="426.0" style="-fx-spacing: 10px;">
+                        <HBox layoutX="384.0" layoutY="292.0" prefHeight="25.0" prefWidth="207.0" style="-fx-spacing: 10px;">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Cancle" textFill="WHITE" />
+                              <Button mnemonicParsing="false" onAction="#reloadOnAction" prefHeight="25.0" prefWidth="100.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Reload" textFill="WHITE" />
+                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="101.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Delete" textFill="WHITE" />
                            </children>
                         </HBox>
                      </children>

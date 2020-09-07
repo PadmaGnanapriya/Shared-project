@@ -29,13 +29,13 @@
                         <TextField fx:id="txtDescription" editable="false" prefHeight="25.0" prefWidth="163.0" promptText="decription" />
                         <TextField fx:id="txtUnitPrice" editable="false" prefHeight="25.0" prefWidth="111.0" promptText="unit price" />
                         <TextField fx:id="txtQtyONHand" editable="false" prefHeight="25.0" prefWidth="103.0" promptText="qty on hand" />
-                        <TextField fx:id="txtQty" layoutX="445.0" layoutY="10.0" onAction="#qtyOnAction" onInputMethodTextChanged="#qtyOnAdding" prefHeight="25.0" prefWidth="89.0" promptText="qty" />
+                        <TextField fx:id="txtQty" layoutX="445.0" layoutY="10.0" onAction="#qtyOnAction" onKeyTyped="#qtyOnTyped" prefHeight="25.0" prefWidth="89.0" promptText="qty" />
                      </children>
                   </HBox>
                   <HBox layoutX="392.0" layoutY="95.0" prefHeight="25.0" prefWidth="199.0" style="-fx-spacing: 10px;">
                      <children>
                         <Button fx:id="btnAdd" disable="true" mnemonicParsing="false" onAction="#addOnAction" prefHeight="25.0" prefWidth="100.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Add" textFill="WHITE" />
-                        <Button disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="88.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Delete" textFill="WHITE" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="88.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Delete" textFill="WHITE" />
                      </children>
                   </HBox>
                   <TableView fx:id="tbl" layoutX="11.0" layoutY="125.0" onMouseClicked="#onMouseClick" prefHeight="164.0" prefWidth="580.0">
@@ -77,8 +77,8 @@
                            </font>
                         </Label>
                         <TextField fx:id="txtTotal" editable="false" prefHeight="25.0" prefWidth="151.0" promptText="Total" />
-                        <Button disable="true" mnemonicParsing="false" onAction="#cancleOrderOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Cancle" textFill="WHITE" />
-                        <Button disable="true" layoutX="264.0" layoutY="10.0" mnemonicParsing="false" onAction="#placeOderOnAction" prefHeight="25.0" prefWidth="109.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Place Order" textFill="WHITE" />
+                        <Button fx:id="btnCancle" disable="true" mnemonicParsing="false" onAction="#cancleOrderOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Cancle" textFill="WHITE" />
+                        <Button fx:id="btnPlaceOrder" disable="true" layoutX="264.0" layoutY="10.0" mnemonicParsing="false" onAction="#placeOderOnAction" prefHeight="25.0" prefWidth="109.0" style="-fx-line-spacing: 10px; -fx-background-color: #00cec9;" text="Place Order" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
