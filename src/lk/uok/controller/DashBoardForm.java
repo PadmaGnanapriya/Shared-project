@@ -92,8 +92,9 @@ public class DashBoardForm {
         txtOrderDate.setText(dateFormat.format(date));
     }
 
-    public void onCustomerPerform(ActionEvent actionEvent) throws IOException {
+    public void onCustomerPerform(ActionEvent actionEvent) throws IOException, InterruptedException {
         loadUi("CustomerForm");
+        Thread.sleep(40);
     }
 
     public void onItemPerform(ActionEvent actionEvent) throws IOException {
@@ -113,9 +114,6 @@ public class DashBoardForm {
 
     public void onBackupPerform(ActionEvent actionEvent) {
     }
-
-
-
 
     public void onMouserMove(MouseEvent mouseEvent) { btnCustomer.setStyle("-fx-background-color: cyan; -fx-padding:10px"); }
     public void onMouserExit(MouseEvent mouseEvent) { btnCustomer.setStyle("-fx-background-color: darkcyan; -fx-padding:10px"); }
