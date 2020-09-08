@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Shared-project">
+    <output-path>$PROJECT_DIR$/out/artifacts/Shared_project</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="lk.uok.AppInitializer" />
+        <option name="convertCss2Bin" value="true" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Shared_project.jar">
+        <element id="module-output" name="Shared-project" />
+      </element>
+    </root>
+  </artifact>
+</component>
